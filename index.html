@@ -135,9 +135,9 @@
                             target="_self"><span>Book Hunt</span> </a> </li>
                     <li data-nav-item-id="2628" class=""><a href="/#services" class=""
                             target="_self"><span>Services</span> </a> </li>
-                    <li data-nav-item-id="2629" class=""><a href="/#about.html" class="" target="_self"><span>About</span>
+                    <li data-nav-item-id="2629" class=""><a href="about.html" class="" target="_self"><span>About</span>
                         </a> </li>
-                    <li data-nav-item-id="2630" class=""><a href="/#contact" class=""
+                    <li data-nav-item-id="2630" class=""><a href="contactus.html" class=""
                             target="_self"><span>Contact</span> </a> </li>
                 </ul>
             </nav>
@@ -954,6 +954,39 @@
         integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg=="
         data-cf-beacon='{"version":"2024.11.0","token":"4270e50bdc0e43559b5c2caeb6cd9e8a","r":1,"spa":2}'
         crossorigin="anonymous"></script>
+    <script >
+        const BASE_URL = 'https://openlibrary.org/search.json?title=the+hobbit';
+const COVER_URL = 'https://covers.openlibrary.org/b/id/{cover_i}-M.jpg';
+
+export const api = {
+  // GET request to fetch data
+  async getUsers() {
+    try {
+      const response = await fetch(`${BASE_URL}/users`);
+      if (!response.ok) throw new Error('Network response was not ok');
+      return await response.json();
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      throw error;
+    }
+  },
+
+  // POST request to send data
+  async createUser(userData) {
+    try {
+      const response = await fetch(`${BASE_URL}/users`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData),
+      });
+      return await response.json();
+    } catch (error) {
+      console.error("Error creating user:", error);
+      throw error;
+    }
+  }
+};
+    </script>
 </body>
 
 </html>
